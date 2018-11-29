@@ -1,5 +1,7 @@
 package org.fui.utils;
 
+import org.fui.constants.RunConst;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -17,11 +19,11 @@ public class Graphics2DUtils {
     private static String centerName = "测试章";
     private static String year = "2018年08月17日";
 
-
     public static void main(String[] args) throws Exception {
+        FileUtils.ensurePath(RunConst.RESULT_PATH);
         BufferedImage image = startGraphics2D();
         try {
-            String filePath = "E:/sign.png";
+            String filePath = RunConst.RESULT_PATH + File.separator + "sign.png";
             ImageIO.write(image, "png", new File(filePath));
         } catch (Exception ex) {
             ex.printStackTrace();

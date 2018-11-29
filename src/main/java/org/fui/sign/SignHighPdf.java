@@ -111,9 +111,9 @@ public class SignHighPdf {
 
     public static void main(String[] args) throws Exception {
         //对已经签章的signed.pdf文件再次签章，这次是高清签章
-        byte[] fileData = sign("123456", "E:/keystore.p12", "E:/1643-filled.pdf", 350, 290, "电子签章测试\n2018-08-17");
+        byte[] fileData = sign("123456", "sign_run/keystore.p12", "sign_run/test_signed_1.pdf", 350, 290, "签名内容XXXX");
         if (fileData != null) {
-            FileOutputStream f = new FileOutputStream(new File("E:/signed2.pdf"));
+            FileOutputStream f = new FileOutputStream(new File("sign_run/test_signed_2.pdf"));
             f.write(fileData);
             f.close();
         }

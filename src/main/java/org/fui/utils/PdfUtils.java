@@ -6,11 +6,9 @@ import com.itextpdf.text.pdf.AcroFields.Item;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
+import org.fui.constants.RunConst;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 
 public class PdfUtils {
@@ -91,6 +89,7 @@ public class PdfUtils {
     }
 
     public static void main(String[] args) {
+        FileUtils.ensurePath(RunConst.RESULT_PATH);
         Map<String, String> data = new HashMap<String, String>();
         //key为pdf模板的form表单的名字，value为需要填充的值
         data.put("contract_no", "NO-99882-01");
@@ -103,9 +102,9 @@ public class PdfUtils {
         data.put("jjf", "王五");
 
         // 模板路径
-        String templatePdfPath = "E:/1643.pdf";
+        String templatePdfPath = RunConst.RESULT_PATH + File.separator +"test.pdf";
         // 生成的新文件路径
-        String generatePdfPath = "E:/1643-filled.pdf";
+        String generatePdfPath = RunConst.RESULT_PATH + File.separator +"test-filled.pdf";
         generatePDF(templatePdfPath, generatePdfPath, data);
     }
 }

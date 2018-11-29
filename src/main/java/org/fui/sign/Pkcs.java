@@ -10,6 +10,8 @@ import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.fui.constants.RunConst;
+import org.fui.utils.FileUtils;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -172,6 +174,8 @@ public class Pkcs {
     }
 
     public static void main(String[] args) throws Exception {
+        FileUtils.ensurePath(RunConst.RESULT_PATH);
+
         // CN: 名字与姓氏    OU : 组织单位名称
         // O ：组织名称  L : 城市或区域名称  E : 电子邮件
         // ST: 州或省份名称  C: 单位的两字母国家代码
@@ -180,10 +184,10 @@ public class Pkcs {
         String certificateCRL = "https://gitee.com/xfreng";
         Map<String, byte[]> result = createCert("123456", issuerStr, subjectStr, certificateCRL);
 
-        FileOutputStream outPutStream = new FileOutputStream("E:/keystore.p12");
+        FileOutputStream outPutStream = new FileOutputStream(RunConst.RESULT_PATH + File.separator + "keystore.p12");
         outPutStream.write(result.get("keyStoreData"));
         outPutStream.close();
-        FileOutputStream fos = new FileOutputStream(new File("E:/keystore.cer"));
+        FileOutputStream fos = new FileOutputStream(new File(RunConst.RESULT_PATH + File.separator + "keystore.cer"));
         fos.write(result.get("certificateData"));
         fos.flush();
         fos.close();

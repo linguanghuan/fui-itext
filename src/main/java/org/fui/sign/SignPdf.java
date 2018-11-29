@@ -246,9 +246,9 @@ public class SignPdf {
 
     public static void main(String[] args) throws Exception {
         //byte[] fileData = sign("123456", "E:/keystore.p12", "E:/1643-filled.pdf", "E:/sign.png", "电子签章2");
-        byte[] fileData = sign("123456", "E:/keystore.p12", "E:/signed.pdf", "E:/sign.png", "电子签章1");
+        byte[] fileData = sign("123456", "sign_run/keystore.p12", "sign_run/test-filled.pdf", "sign_run/sign.png", "王五");
         if (fileData != null) {
-            FileOutputStream f = new FileOutputStream(new File("E:/signed_2.pdf"));
+            FileOutputStream f = new FileOutputStream(new File("sign_run/test_signed_1.pdf"));
             f.write(fileData);
             f.close();
         }
